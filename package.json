@@ -1,0 +1,82 @@
+{
+  "name": "kee-typer",
+  "version": "1.0.0",
+  "description": "TBD",
+  "main": "dist/lib/index.js",
+  "typings": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "author": "Matthias Piepkorn <mpiepk@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Doccrazy/node-kee-typer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Doccrazy/node-kee-typer/issues"
+  },
+  "homepage": "https://doccrazy.github.io/node-kee-typer/",
+  "keywords": [
+    "keepass",
+    "autotype",
+    "sendkeys",
+    "keyboard",
+    "automation"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "prebuild": "rimraf dist docs",
+    "build": "tsc --module commonjs && typedoc --options typedoc.json",
+    "start": "ts-node src/cli.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "deploy-docs": "ts-node tools/gh-pages-publish",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|\\.(test|spec|e2e))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 85,
+        "functions": 85,
+        "lines": 85,
+        "statements": 85
+      }
+    },
+    "collectCoverage": true
+  },
+  "dependencies": {
+    "@types/tmp": "^0.1.0",
+    "tmp": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.2",
+    "coveralls": "^3.0.2",
+    "jest": "^23.6.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.1",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-standard": "^8.0.1",
+    "typedoc": "^0.12.0",
+    "typescript": "^3.0.3"
+  }
+}
